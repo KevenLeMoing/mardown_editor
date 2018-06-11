@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 //CSS
 import './style/css/bootstrap.min.css';
 import './index.css';
+//JS variables
+import { sampleText } from './sampleText';
+
 
 class App extends React.Component {
 	render(){
@@ -10,7 +13,7 @@ class App extends React.Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-sm-6">
-						<textarea value="Write your text here !" rows="35" className="form-controll">
+						<textarea value={sampleText} rows="35" className="form-controll">
 
 						</textarea>
 					</div>
