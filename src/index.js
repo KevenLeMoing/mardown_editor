@@ -8,18 +8,37 @@ import { sampleText } from './sampleText';
 
 
 class App extends React.Component {
+
+	state = {
+		text: sampleText
+	};
+
+
+	editText = (event) => {
+		const text = event.target.value;
+		this.setState({ text });
+	};
+
+
 	render(){
 		return(
 			<div className="container">
 				<div className="row">
 					<div className="col-sm-6">
-						<textarea value={sampleText} rows="35" className="form-controll">
+						<textarea 
+						value={this.state.text}
+						rows="35" 
+						className="form-controll"
+						onChange={(e) => this.editText(e)}
+						>
 
 						</textarea>
 					</div>
 
 					<div className="col-sm-6">
-						<h1>Results</h1>
+						<div>
+							{this.state.text}
+						</div>
 					</div>
 				</div>
 			</div>
