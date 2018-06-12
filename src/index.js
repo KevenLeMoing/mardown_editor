@@ -5,6 +5,8 @@ import './style/css/bootstrap.min.css';
 import './index.css';
 //JS variables
 import { sampleText } from './sampleText';
+//Marked.js
+import marked from 'marked';
 
 
 class App extends React.Component {
@@ -17,6 +19,11 @@ class App extends React.Component {
 	editText = (event) => {
 		const text = event.target.value;
 		this.setState({ text });
+	};
+
+	renderText = (text) => {
+		const renderText = marked(text, { sanitize: true });
+		return { __html: renderText };
 	};
 
 
@@ -36,9 +43,7 @@ class App extends React.Component {
 					</div>
 
 					<div className="col-sm-6">
-						<div>
-							{this.state.text}
-						</div>
+						<div dangerouslySetInnerHTML={this.renderText(this.state.text)} />
 					</div>
 				</div>
 			</div>
