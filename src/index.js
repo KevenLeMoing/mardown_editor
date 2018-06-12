@@ -15,18 +15,35 @@ class App extends React.Component {
 		text: sampleText
 	};
 
+	//Before the rendering will be launched
+	componentWillMount() {
+		const localStorageText = localStorage.getItem('text');
 
+		if (localStorageText) {
+			this.setState({ text: localStorageText });
+		}
+	}
+
+	//After the rendering will be launched
+	componentWillUpdate(nextProps, nextState) {
+		localStorage.setItem('text', nextState.text);
+	}
+
+////Functions
+
+	//To synchronize the two columns' display 
 	editText = (event) => {
 		const text = event.target.value;
 		this.setState({ text });
 	};
 
+	//To interpret (only) the markdown syntaxe
 	renderText = (text) => {
 		const renderText = marked(text, { sanitize: true });
 		return { __html: renderText };
 	};
 
-
+	//Display
 	render(){
 		return(
 			<div className="container">
